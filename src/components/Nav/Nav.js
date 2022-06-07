@@ -162,7 +162,8 @@ const NavWrapper = styled.div`
   height: 5.688rem;
   background-color: ${({ logoChange }) =>
     logoChange ? 'rgba(0, 0, 0, 0.3)' : 'white'};
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid
+    ${({ logoChange }) => (logoChange ? 'rgba(255, 255, 255, 0.2)' : '#342461')};
   display: flex;
   justify-content: center;
   position: absolute;

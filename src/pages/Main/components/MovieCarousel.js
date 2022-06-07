@@ -27,7 +27,9 @@ const MovieCarousel = ({ source, rank }) => {
           <RatingWrapper>
             <Rating>관람평</Rating>
             <Rating>
-              {average_rating === null ? 0 : parseFloat(average_rating)}
+              {average_rating === null
+                ? 0
+                : Math.round(average_rating * 100) / 100}
             </Rating>
           </RatingWrapper>
         </ViewMore>
