@@ -29,7 +29,12 @@ const NavRightMenu = ({ navRightTitle, navId, hoverOn, logoChange }) => {
           <ul>
             {navId === id &&
               menu.map((menu, i) => (
-                <NavRightDropLi menu={menu} key={i} logoChange={logoChange} />
+                <NavRightDropLi
+                  menu={menu}
+                  key={i}
+                  link={link}
+                  logoChange={logoChange}
+                />
               ))}
           </ul>
         </div>
@@ -56,7 +61,6 @@ const NavRightLi = styled.li`
     height: 44px;
     background-color: ${({ logoChange }) =>
       logoChange ? 'rgb(0,0,0,0.3)' : '#339eb1'};
-
     position: absolute;
     right: 0px;
     top: 91px;

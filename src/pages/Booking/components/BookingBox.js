@@ -5,6 +5,7 @@ import BookingDate from './Date/BookingDate.js';
 import BookingMovie from './Movie/BookingMovie.js';
 import BookingTheater from './Theater/BookingTheater.js';
 import BookingTime from './Time/BookingTime.js';
+import { API } from '../../../config';
 
 const BookingBox = () => {
   const location = useLocation();
@@ -39,12 +40,9 @@ const BookingBox = () => {
     const movieString = selectMovie.map(e => `&movie_id=${e}`).join('');
     const theaterString = selectedTheater.map(e => `&theater_id=${e}`).join('');
     selectedTheater.length !== 0 &&
-      fetch(
-        `http://10.58.1.169:8000/reservation${dateString}${movieString}${theaterString}`,
-        {
-          method: 'GET',
-        }
-      )
+      fetch(`${API.BOOKING}${dateString}${movieString}${theaterString}`, {
+        method: 'GET',
+      })
         .then(res => res.json())
         .then(data => {
           setBookingData(data.time_table);
@@ -52,14 +50,24 @@ const BookingBox = () => {
   }, [selectMovie, selectedTheater, selectedDate]);
 
   useEffect(() => {
-    fetch('http://10.58.1.169:8000/movie', {
+    const dateString =
+      selectedDate &&
+      `?date=${selectedDate.year}-${selectedDate.month}-${selectedDate.date}`;
+    fetch(`${API.MOVIE}${dateString}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
+        const initialMovieIdx = data.result.findIndex(
+          movie => movie.movie_id === location.state
+        );
         setMovieListData(data.result);
+
+        if (!data.result[initialMovieIdx]?.is_available) {
+          setSelectMovie([]);
+        }
       });
-  }, []);
+  }, [selectedDate]);
 
   const handleSelectMovie = moviesId => {
     if (selectMovie.includes(moviesId)) {

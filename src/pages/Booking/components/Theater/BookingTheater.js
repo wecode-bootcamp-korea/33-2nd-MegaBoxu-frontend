@@ -3,6 +3,7 @@ import RegionLists from './components/RegionLists';
 import TheaterLists from './components/TheaterLists';
 import TheaterPosts from './components/TheaterPosts';
 import styled from 'styled-components';
+import { API } from '../../../../config';
 
 function BookingTheater({
   selectedRegion,
@@ -13,7 +14,7 @@ function BookingTheater({
   const [theaterData, setTheaterData] = useState([]);
 
   useEffect(() => {
-    fetch('http://10.58.1.169:8000/reservation/region-theater')
+    fetch(`${API.BOOKING}/region-theater`)
       .then(res => res.json())
       .then(data => {
         setTheaterData(data.region_theaters);

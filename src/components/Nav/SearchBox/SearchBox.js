@@ -12,7 +12,7 @@ const SearchBox = ({ setSearchActive }) => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://10.58.1.169:8000/movie`, {
+    fetch(`http://10.58.1.162:8000/movie`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -24,8 +24,8 @@ const SearchBox = ({ setSearchActive }) => {
 
   const searchBtn = e => {
     e.preventDefault();
-    const string = `/movie?search=${e.target.search.value}`;
-    navigate(string);
+    const string = e.target.search.value;
+    navigate('/movielist', { state: string });
     e.target.search.value = '';
     setSearchActive(false);
   };
@@ -66,6 +66,7 @@ const SearchBox = ({ setSearchActive }) => {
                   type="text"
                   placeholder="영화를 검색하세요"
                   name="search"
+                  autoComplete="off"
                 />
                 <SearchButton>
                   <SearchBtn>
@@ -137,6 +138,7 @@ const MovieSearch = styled.input`
   font-size: 20px;
   border: 0;
   padding-left: 20px;
+  outline: none;
 `;
 
 const SearchBoxDiv = styled.div`
@@ -160,31 +162,3 @@ const SearchBtn = styled(BiSearch)`
 `;
 
 export default SearchBox;
-
-const MOVIE_CHART = [
-  {
-    movie_id: 0,
-    title: '마녀(魔女) Part2. The Other One',
-    url: '../../../public/images/IMG_5902.JPG',
-  },
-  {
-    movie_id: 1,
-    title: '범죄도시2',
-    url: '../../../public/images/IMG_5902.JPG',
-  },
-  {
-    movie_id: 2,
-    title: '탑건:매버릭',
-    url: '../../../public/images/IMG_5902.JPG',
-  },
-  {
-    movie_id: 3,
-    title: '버즈라이트이어',
-    url: '../../../public/images/IMG_5902.JPG',
-  },
-  {
-    movie_id: 4,
-    title: '브로커',
-    url: '../../../public/images/IMG_5902.JPG',
-  },
-];

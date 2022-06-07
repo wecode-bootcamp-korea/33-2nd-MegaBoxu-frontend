@@ -29,7 +29,9 @@ const NavLeftMenu = ({ navLeftTitle, navId, hoverOn, logoChange }) => {
         <div className="navBar">
           <ul>
             {navId === id &&
-              menu.map((menu, i) => <NavLeftDropLi menu={menu} key={i} />)}
+              menu.map((menu, i) => (
+                <NavLeftDropLi menu={menu} link={link} key={i} />
+              ))}
           </ul>
         </div>
       )}

@@ -18,7 +18,7 @@ function Router() {
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/movielist" element={<MovieList />} />
-        <Route path="/moviedetail" element={<MovieDetail />} />
+        <Route path="/movie/detail/:id" element={<MovieDetail />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/users/kakao/callback" element={<KakaoLogin />} />
       </Routes>

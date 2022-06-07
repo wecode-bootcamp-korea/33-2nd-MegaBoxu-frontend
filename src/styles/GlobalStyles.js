@@ -6,6 +6,11 @@ const GlobalStyles = createGlobalStyle`
   * { 
       box-sizing: border-box;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
       font-family: "Noto Sans KR", sans-serif;
   }

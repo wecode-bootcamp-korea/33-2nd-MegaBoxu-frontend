@@ -15,6 +15,7 @@ export default Booking;
 const Container = styled.main`
   width: 80rem;
   margin: auto;
+  margin-top: 10rem;
 `;
 
 const Title = styled.h2`

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const MovieContent = ({ movielist }) => {
   const {
+    movie_id,
     title,
     poster_url,
     age_limit,
@@ -14,11 +16,11 @@ const MovieContent = ({ movielist }) => {
   } = movielist;
 
   const [likeColor, setLikeColor] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <MovieListBox>
       <MovieInfo>
-        <MoviePoster>
+        <MoviePoster onClick={() => navigate(`/movie/detail/${movie_id}`)}>
           <img src={poster_url} alt="" />
           <MovieSummary>
             <MovieDesc>
@@ -27,7 +29,9 @@ const MovieContent = ({ movielist }) => {
             <MovieRate>
               <RateName>관람평</RateName>
               <RatePoint>
-                {average_rating === null ? 0 : parseFloat(average_rating)}
+                {average_rating === null
+                  ? 0
+                  : Math.round(average_rating * 100) / 100}
               </RatePoint>
             </MovieRate>
           </MovieSummary>
@@ -49,7 +53,7 @@ const MovieContent = ({ movielist }) => {
           >
             <AiOutlineHeart color={likeColor === false ? 'black' : 'red'} />
           </LikeBtn>
-          <TicketBtn>예매</TicketBtn>
+          <TicketBtn onClick={() => navigate(`/booking`)}>예매</TicketBtn>
         </ButtonDiv>
       </MovieInfo>
     </MovieListBox>

@@ -6,21 +6,25 @@ import MovieContent from './component/MovieContent';
 import MoreButton from './component/MoreButton';
 import MovieCategory from './component/MovieCategory';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { API } from '../../config';
 
 const MovieList = () => {
+  const location = useLocation();
+
   const [listValue, setListValue] = useState([]);
   const [stateValue, setStateValue] = useState({
     filterValue: '',
-    searchValue: '',
-    offValue: '',
+    searchValue: location.state ? location.state : '',
+    offValue: '&offset=0&limit=8',
   });
   const [query, setQuery] = useState(12);
   const navigate = useNavigate();
-  const location = useLocation();
+
+  console.log(stateValue);
 
   //데이터 받아오기
   useEffect(() => {
-    fetch(`http://10.58.1.169:8000/movie${location.search}`, {
+    fetch(`${API.MOVIE}${location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -66,6 +70,9 @@ const MovieList = () => {
     setStateValue(prev => {
       return { ...prev, offValue: queryString };
     });
+    setStateValue(prev => {
+      return { ...prev, searchValue: '' };
+    });
   };
 
   return (
@@ -104,6 +111,7 @@ const MovieListWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 130px;
 `;
 
 const Container = styled.div`
@@ -113,6 +121,7 @@ const Container = styled.div`
   .btnDiv {
     width: 100%;
     height: 80px;
+
     .moreBtn {
       width: 100%;
       height: 40px;
