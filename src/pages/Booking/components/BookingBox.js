@@ -59,8 +59,6 @@ const BookingBox = () => {
         });
   }, [location.search]);
 
-  console.log(movieListData);
-
   useEffect(() => {
     fetch(
       // 'data/bookingData.json',
