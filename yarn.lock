@@ -8218,11 +8218,7 @@
     "safe-buffer" "~5.1.0"
 
 "string-convert@^0.2.0":
-<<<<<<< HEAD
-  "integrity" "sha1-aYLMMEn7tM2F+LJFaLnZvznu/5c="
-=======
   "integrity" "sha512-u/1tdPl4yQnPBjnVrmdLo9gtuLvELKsAoRapekWggdiQNvvvum+jYF329d84NAa660KQw7pB2n36KrIKVoXa3A=="
->>>>>>> 7345fad (rebase)
   "resolved" "https://registry.npmjs.org/string-convert/-/string-convert-0.2.1.tgz"
   "version" "0.2.1"
 
@@ -8769,9 +8765,9 @@
     "punycode" "^2.1.0"
 
 "use-sync-external-store@^1.0.0":
-  "integrity" "sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ=="
-  "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.1.0.tgz"
-  "version" "1.1.0"
+  "integrity" "sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA=="
+  "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz"
+  "version" "1.2.0"
 
 "util-deprecate@^1.0.1", "util-deprecate@^1.0.2", "util-deprecate@~1.0.1":
   "integrity" "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
