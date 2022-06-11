@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "title": "브로커",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 31.6,
+    "release_date": "2022.06.08",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 2,
+    "title": "범죄도시2",
+    "poster_url": "/images/iOS 이미지.jpg",
+    "age_limit": "15",
+    "reservation_rate": 19.2,
+    "release_date": "2022.05.18",
+    "description": "이형석 그만자"
+  },
+  {
+    "id": 3,
+    "title": "쥬라기 월드:도미니언",
+    "poster_url": "/images/iOS 이미지 (31).jpg",
+    "age_limit": "15",
+    "reservation_rate": 10.2,
+    "release_date": "2022.06.01",
+    "description": "킹 카지노박"
+  },
+  {
+    "id": 4,
+    "title": "버즈 라이트이어",
+    "poster_url": "/images/Facetune_22-12-2021-17-16-54.jpg",
+    "age_limit": "ALL",
+    "reservation_rate": 5,
+    "release_date": "2022.06.15",
+    "description": "나 멋지네"
+  },
+  {
+    "id": 5,
+    "title": "마녀2",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "15",
+    "reservation_rate": 3.9,
+    "release_date": "2022.06.15",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 6,
+    "title": "탑건:매버릭",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 2.2,
+    "release_date": "2022.06.22",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 7,
+    "title": "브로커",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 31.6,
+    "release_date": "2022.06.08",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 8,
+    "title": "범죄도시2",
+    "poster_url": "/images/iOS 이미지.jpg",
+    "age_limit": "15",
+    "reservation_rate": 19.2,
+    "release_date": "2022.05.18",
+    "description": "이형석 그만자"
+  },
+  {
+    "id": 9,
+    "title": "쥬라기 월드:도미니언",
+    "poster_url": "/images/iOS 이미지 (31).jpg",
+    "age_limit": "15",
+    "reservation_rate": 10.2,
+    "release_date": "2022.06.01",
+    "description": "킹 카지노박"
+  },
+  {
+    "id": 10,
+    "title": "버즈 라이트이어",
+    "poster_url": "/images/Facetune_22-12-2021-17-16-54.jpg",
+    "age_limit": "ALL",
+    "reservation_rate": 5,
+    "release_date": "2022.06.15",
+    "description": "내가 제일 멋지네"
+  },
+  {
+    "id": 11,
+    "title": "마녀2",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "15",
+    "reservation_rate": 3.9,
+    "release_date": "2022.06.15",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 12,
+    "title": "탑건:매버릭",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 2.2,
+    "release_date": "2022.06.22",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 13,
+    "title": "브로커",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 31.6,
+    "release_date": "2022.06.08",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 14,
+    "title": "범죄도시2",
+    "poster_url": "/images/iOS 이미지.jpg",
+    "age_limit": "15",
+    "reservation_rate": 19.2,
+    "release_date": "2022.05.18",
+    "description": "이형석 그만자"
+  },
+  {
+    "id": 15,
+    "title": "쥬라기 월드:도미니언",
+    "poster_url": "/images/iOS 이미지 (31).jpg",
+    "age_limit": "15",
+    "reservation_rate": 10.2,
+    "release_date": "2022.06.01",
+    "description": "킹 카지노박"
+  },
+  {
+    "id": 16,
+    "title": "버즈 라이트이어",
+    "poster_url": "/images/Facetune_22-12-2021-17-16-54.jpg",
+    "age_limit": "ALL",
+    "reservation_rate": 5,
+    "release_date": "2022.06.15",
+    "description": "나 멋지네"
+  },
+  {
+    "id": 17,
+    "title": "마녀2",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "15",
+    "reservation_rate": 3.9,
+    "release_date": "2022.06.15",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 18,
+    "title": "탑건:매버릭",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 2.2,
+    "release_date": "2022.06.22",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 19,
+    "title": "브로커",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 31.6,
+    "release_date": "2022.06.08",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 20,
+    "title": "범죄도시2",
+    "poster_url": "/images/iOS 이미지.jpg",
+    "age_limit": "15",
+    "reservation_rate": 19.2,
+    "release_date": "2022.05.18",
+    "description": "이형석 그만자"
+  },
+  {
+    "id": 21,
+    "title": "쥬라기 월드:도미니언",
+    "poster_url": "/images/iOS 이미지 (31).jpg",
+    "age_limit": "15",
+    "reservation_rate": 10.2,
+    "release_date": "2022.06.01",
+    "description": "킹 카지노박"
+  },
+  {
+    "id": 22,
+    "title": "버즈 라이트이어",
+    "poster_url": "/images/Facetune_22-12-2021-17-16-54.jpg",
+    "age_limit": "ALL",
+    "reservation_rate": 5,
+    "release_date": "2022.06.15",
+    "description": "내가 제일 멋지네"
+  },
+  {
+    "id": 23,
+    "title": "마녀2",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "15",
+    "reservation_rate": 3.9,
+    "release_date": "2022.06.15",
+    "description": "불타는 고구마"
+  },
+  {
+    "id": 24,
+    "title": "탑건:매버릭",
+    "poster_url": "/images/IMG_5902.JPG",
+    "age_limit": "12",
+    "reservation_rate": 2.2,
+    "release_date": "2022.06.22",
+    "description": "불타는 고구마"
+  }
+]
