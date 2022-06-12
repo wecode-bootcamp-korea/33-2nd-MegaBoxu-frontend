@@ -4,7 +4,7 @@ import DateBox from './components/DateBox';
 import YearMonth from './components/YearMonth';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
-const DateSlider = () => {
+const DateSlider = ({ handleObjectDate }) => {
   const [curDate, setCurDate] = useState(0);
   const dateBtnWrapperRef = useRef();
 
@@ -38,20 +38,23 @@ const DateSlider = () => {
         -DATEBOX_WIDTH * (curDate - 1)
       }px)`;
       setCurDate(prev => prev - 1);
+      handleObjectDate(curDate - 1);
     } else if (direction === 'right' && curDate !== MAX_DATE - 20) {
       dateBtnWrapperRef.current.style.transform = `translateX(${
         -DATEBOX_WIDTH * (curDate + 1)
       }px)`;
       setCurDate(prev => prev + 1);
+      handleObjectDate(curDate + 1);
     }
   };
-
   return (
     <StyledDateSlider>
       <ArrowBtn>
         <MdChevronLeft
           className="arrowIcons"
-          onClick={() => handleArrowBtn('left')}
+          onClick={() => {
+            handleArrowBtn('left');
+          }}
         />
       </ArrowBtn>
       <DateSliderWrapper>
@@ -77,7 +80,9 @@ const DateSlider = () => {
       <ArrowBtn>
         <MdChevronRight
           className="arrowIcons"
-          onClick={() => handleArrowBtn('right')}
+          onClick={() => {
+            handleArrowBtn('right');
+          }}
         />
       </ArrowBtn>
     </StyledDateSlider>
