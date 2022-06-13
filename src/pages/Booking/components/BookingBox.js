@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FaAlgolia } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BookingDate from './Date/BookingDate.js';
@@ -17,7 +16,6 @@ const BookingBox = () => {
 
   const navigator = useNavigate();
   const location = useLocation();
-  // return delete dataValues.movie;
 
   useEffect(() => {
     setDataValues({
