@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FaAlgolia } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BookingDate from './Date/BookingDate.js';
 import BookingMovie from './Movie/BookingMovie.js';
@@ -8,25 +9,22 @@ import BookingTime from './Time/BookingTime.js';
 
 const BookingBox = () => {
   const [bookingData, setBookingData] = useState([]);
+
   const [selectMovie, setSelectMovie] = useState([]);
   const [selectedTheater, setSelectedTheater] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [dataValues, setDataValues] = useState({});
 
   const navigator = useNavigate();
-
-  // const payloadString = Object.entries(dataValues);
-  // console.log(Object.keys(dataValues));
-  // console.log(bookingData);
-  console.log(Object.values(dataValues));
-  // console.log(dataValues);
+  const location = useLocation();
+  // return delete dataValues.movie;
 
   useEffect(() => {
     setDataValues({
       ...dataValues,
-      movie: selectMovie,
-      theater: selectedTheater,
       date: 0,
+      movie: selectMovie.length === 0 ? 'all' : selectMovie,
+      theater: selectedTheater.length === 0 ? 'all' : selectedTheater,
     });
   }, [selectMovie, selectedTheater]);
 
@@ -35,7 +33,12 @@ const BookingBox = () => {
       .map(e => e.join('=').replace(/,/g, '&' + e[0] + '='))
       .join('&');
     navigator(`?${payloadString}`);
-  }, [dataValues.movie, dataValues.theater, dataValues.date]);
+  }, [
+    dataValues.movie,
+    dataValues.theater,
+    dataValues.date,
+    dataValues.region,
+  ]);
 
   useEffect(() => {
     fetch('data/bookingData.json', {
@@ -54,41 +57,6 @@ const BookingBox = () => {
     });
   };
 
-  // const handleObjectMovie = movie => {
-  //   // if (dataValues.movie === movie) {
-  //   //   setDataValues((dataValues.movie = ''));
-  //   //   return;
-  //   // }
-  //   if (dataValues.movie === movie) {
-  //     // return delete dataValues.movie;
-  //     setDataValues(Object.values(dataValues).filter(value => value !== movie));
-  //   } else {
-  //     setDataValues({
-  //       ...dataValues,
-  //       movie: movie,
-  //     });
-  //   }
-  // };
-
-  // const handleObjectTheater = theater => {
-  //   if (dataValues.theater === theater) {
-  //     // return delete dataValues.theater;
-  //     setDataValues(
-  //       Object.values(dataValues).filter(value => value !== theater)
-  //     );
-  //   }
-  //   // if (dataValues.theater === theater) {
-  //   //   setDataValues((dataValues.theater = ''));
-  //   //   return;
-  //   // }
-  //   else {
-  //     setDataValues({
-  //       ...dataValues,
-  //       theater: theater,
-  //     });
-  //   }
-  // };
-
   const handleSelectMovie = movies => {
     if (selectMovie.includes(movies)) {
       setSelectMovie([...selectMovie.filter(movie => movie !== movies)]);
@@ -101,20 +69,26 @@ const BookingBox = () => {
     }
   };
 
-  const handleSelectTheater = Theater => {
-    if (selectedTheater.includes(Theater)) {
-      setSelectedTheater([...selectedTheater.filter(id => id !== Theater)]);
+  const handleSelectRegion = region => {
+    setSelectedRegion(region);
+    setDataValues({
+      ...dataValues,
+      region: region,
+    });
+  };
+
+  const handleSelectTheater = theaters => {
+    if (selectedTheater.includes(theaters)) {
+      setSelectedTheater([
+        ...selectedTheater.filter(theater => theater !== theaters),
+      ]);
       return;
     }
     if (selectedTheater.length >= 3) {
       alert('극장은 최대 3개까지 선택이 가능합니다.');
     } else {
-      setSelectedTheater(prev => [...prev, Theater]);
+      setSelectedTheater(prev => [...prev, theaters]);
     }
-  };
-
-  const handleSelectRegion = Region => {
-    setSelectedRegion(Region);
   };
 
   return (

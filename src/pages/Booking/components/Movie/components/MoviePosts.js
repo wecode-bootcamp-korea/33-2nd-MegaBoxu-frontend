@@ -14,7 +14,7 @@ function MoviePosts({ selectMovie, bookingData }) {
         {bookingData &&
           bookingData.map(post => {
             return (
-              selectMovie.includes(post.id) && (
+              selectMovie.includes(post.title) && (
                 <Posts key={post.id}>
                   <img src={post.image} alt="MoviePost" />
                 </Posts>
