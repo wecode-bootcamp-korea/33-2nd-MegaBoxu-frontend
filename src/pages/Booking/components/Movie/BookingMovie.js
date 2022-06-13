@@ -10,18 +10,17 @@ function BookingMovie({ bookingData, handleSelectMovie, selectMovie }) {
         <H2>영화</H2>
         <MovieAll>전체</MovieAll>
         <MovieList>
-          {bookingData &&
-            bookingData.map(movies => (
-              <MovieLists
-                title={movies.title}
-                age={movies.age}
-                id={movies.id}
-                key={movies.id}
-                handleSelectMovie={handleSelectMovie}
-                selectMovie={selectMovie}
-                titleSelect={selectMovie.includes(movies.title)}
-              />
-            ))}
+          {bookingData?.map(movies => (
+            <MovieLists
+              title={movies.title}
+              age={movies.age}
+              id={movies.id}
+              key={movies.id}
+              handleSelectMovie={handleSelectMovie}
+              selectMovie={selectMovie}
+              titleSelect={selectMovie.includes(movies.title)}
+            />
+          ))}
         </MovieList>
         <MoviePosts bookingData={bookingData} selectMovie={selectMovie} />
       </BookingFlexBox>

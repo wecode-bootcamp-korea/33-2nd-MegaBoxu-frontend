@@ -19,19 +19,6 @@ const DateSlider = ({ handleObjectDate }) => {
     return { year, month, date, day };
   };
 
-  const setYearArea = (idx, dateInfo) => {
-    if (idx === curDate || dateInfo.date === 1) {
-      return (
-        <YearMonth
-          idx={idx}
-          key={idx}
-          dateInfo={dateInfo}
-          gap={DATEBOX_WIDTH}
-        />
-      );
-    }
-  };
-
   const handleArrowBtn = direction => {
     if (direction === 'left' && curDate !== 0) {
       dateBtnWrapperRef.current.style.transform = `translateX(${
@@ -39,7 +26,7 @@ const DateSlider = ({ handleObjectDate }) => {
       }px)`;
       setCurDate(prev => prev - 1);
       handleObjectDate(curDate - 1);
-    } else if (direction === 'right' && curDate !== MAX_DATE - 20) {
+    } else if (direction === 'right' && curDate !== MAX_DATE - MAKE_LAST_DATE) {
       dateBtnWrapperRef.current.style.transform = `translateX(${
         -DATEBOX_WIDTH * (curDate + 1)
       }px)`;
@@ -63,13 +50,17 @@ const DateSlider = ({ handleObjectDate }) => {
             const dateInfo = getDateList(idx);
             return (
               <React.Fragment key={idx}>
-                {setYearArea(idx, dateInfo)}
+                {(idx === curDate || dateInfo.date === 1) && (
+                  <YearMonth
+                    idx={idx}
+                    dateInfo={dateInfo}
+                    gap={DATEBOX_WIDTH}
+                  />
+                )}
                 <DateBox
-                  id={idx}
-                  key={`DateBox${idx}`}
                   width={DATEBOX_WIDTH}
                   dateInfo={dateInfo}
-                  disabled={idx > 6 ? true : false}
+                  disabled={idx > DATE_VISIBLE}
                   isSelected={idx === curDate}
                 />
               </React.Fragment>
@@ -119,3 +110,5 @@ const DateSliderContainer = styled.div`
 
 const MAX_DATE = 30;
 const DATEBOX_WIDTH = 70;
+const MAKE_LAST_DATE = 20;
+const DATE_VISIBLE = 6;

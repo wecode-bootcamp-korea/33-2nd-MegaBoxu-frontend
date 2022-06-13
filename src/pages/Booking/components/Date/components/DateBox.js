@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import styled, { css } from 'styled-components';
 
 const DateBox = ({ id, width, dateInfo, disabled, isSelected }) => {
@@ -18,32 +19,24 @@ const DateBox = ({ id, width, dateInfo, disabled, isSelected }) => {
 
 export default DateBox;
 
-const selectColor = css`
-  color: ${({ day }) => {
-    if (day === '토') return 'blue';
-    else if (day === '일') return 'red';
-    else return 'black';
-  }};
-`;
+// const setDisabledStyle = css`
+//   ${({ disabled }) => {
+//     if (disabled) {
+//       return css`
+//         opacity: 0.4;
+//       `;
+//     } else {
+//       return css`
+//         cursor: pointer;
+//         opacity: 1;
 
-const setDisabledStyle = css`
-  ${({ disabled }) => {
-    if (disabled) {
-      return css`
-        opacity: 0.4;
-      `;
-    } else {
-      return css`
-        cursor: pointer;
-        opacity: 1;
-
-        &:hover {
-          border-bottom: 2px solid ${({ theme }) => theme.colors.purple};
-        }
-      `;
-    }
-  }}
-`;
+//         &:hover {
+//           border-bottom: 2px solid ${({ theme }) => theme.colors.purple};
+//         }
+//       `;
+//     }
+//   }}
+// `;
 
 const StyledDateBtn = styled.button`
   position: relative;
@@ -52,8 +45,19 @@ const StyledDateBtn = styled.button`
   padding: 0.1rem 0.5rem;
   border: none;
   font-size: 1rem;
+  border-bottom: 2px solid transparent;
   background-color: ${({ isSelected }) =>
     isSelected ? '#f4f4f4' : 'transparent'};
-  ${selectColor};
-  ${setDisabledStyle};
+  opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
+  color: ${({ day }) => {
+    if (day === '토') return 'blue';
+    else if (day === '일') return 'red';
+    else return 'black';
+  }};
+
+  &:hover {
+    border-bottom: ${({ disabled }) =>
+      disabled ? '2px solid transparent' : '2px solid #342461'};
+  }
 `;

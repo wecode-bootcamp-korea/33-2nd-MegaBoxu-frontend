@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BookingDate from './Date/BookingDate.js';
 import BookingMovie from './Movie/BookingMovie.js';
@@ -8,21 +8,18 @@ import BookingTime from './Time/BookingTime.js';
 
 const BookingBox = () => {
   const [bookingData, setBookingData] = useState([]);
-
   const [selectMovie, setSelectMovie] = useState([]);
   const [selectedTheater, setSelectedTheater] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [dataValues, setDataValues] = useState({});
 
   const navigator = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     setDataValues({
       ...dataValues,
-      date: 0,
-      movie: selectMovie.length === 0 ? 'all' : selectMovie,
-      theater: selectedTheater.length === 0 ? 'all' : selectedTheater,
+      movie: selectMovie,
+      theater: selectedTheater,
     });
   }, [selectMovie, selectedTheater]);
 
@@ -105,7 +102,10 @@ const BookingBox = () => {
           selectedTheater={selectedTheater}
           selectedRegion={selectedRegion}
         />
-        <BookingTime bookingData={bookingData} />
+        <BookingTime
+          bookingData={bookingData}
+          selectedTheater={selectedTheater}
+        />
       </BookingContainer>
     </>
   );

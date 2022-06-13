@@ -4,13 +4,13 @@ import styled, { css } from 'styled-components';
 function MoviePosts({ selectMovie, bookingData }) {
   return (
     <>
-      <MoviePostNone disabled={selectMovie.length > 0 ? false : true}>
+      <MoviePostNone disabled={selectMovie.length === 0}>
         <span>
           모든영화
           <br /> 목록에서 영화를 선택하세요.
         </span>
       </MoviePostNone>
-      <MoviePostsPlus disabled={selectMovie.length > 0 ? true : false}>
+      <MoviePostsPlus disabled={selectMovie.length > 0}>
         {bookingData &&
           bookingData.map(post => {
             return (

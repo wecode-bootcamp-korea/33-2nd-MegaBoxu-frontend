@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { FaRegHeart } from 'react-icons/fa';
 
 function MovieLists({ age, title, handleSelectMovie, titleSelect }) {
-  const { bgColor, ageColor } = matchToAge[age];
   return (
     <MovieTitles
       onClick={() => {
@@ -11,7 +10,7 @@ function MovieLists({ age, title, handleSelectMovie, titleSelect }) {
       }}
       titleSelect={titleSelect}
     >
-      <MovieAge bgColor={bgColor}>{ageColor}</MovieAge>
+      <MovieAge bgColor={AGE_COLOR[age]}>{age}</MovieAge>
       <span>{title}</span>
       <FaRegHeart className="icons" />
     </MovieTitles>
@@ -65,9 +64,9 @@ const MovieAge = styled.div`
   background-color: ${({ bgColor }) => bgColor};
 `;
 
-const matchToAge = {
-  All: { ageColor: 'All', bgColor: '#3fa900' },
-  12: { ageColor: '12', bgColor: '#198ef6' },
-  15: { ageColor: '15', bgColor: '#e49c0c' },
-  18: { ageColor: '18', bgColor: '#e81002' },
+const AGE_COLOR = {
+  All: '#3fa900',
+  12: '#198ef6',
+  15: '#e49c0c',
+  18: '#e81002',
 };

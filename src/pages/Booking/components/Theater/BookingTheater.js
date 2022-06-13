@@ -10,7 +10,6 @@ function BookingTheater({
   handleSelectRegion,
   handleSelectTheater,
   selectedTheater,
-  handleObjectTheater,
 }) {
   // 배열.reduce((누적값, 현잿값, 인덱스, 요소) => { return 결과 }, 초깃값);
   const groupValues =
@@ -52,7 +51,6 @@ function BookingTheater({
                     group={group}
                     handleSelectTheater={handleSelectTheater}
                     selectedTheater={selectedTheater}
-                    // handleObjectTheater={handleObjectTheater}
                   />
                 )
             )}

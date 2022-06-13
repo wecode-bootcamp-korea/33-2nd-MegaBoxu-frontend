@@ -3,21 +3,21 @@ import BookingBox from './components/BookingBox';
 
 const Booking = () => {
   return (
-    <StyledBooking>
-      <H2>빠른예매</H2>
+    <Container>
+      <Title>빠른예매</Title>
       <BookingBox />
-    </StyledBooking>
+    </Container>
   );
 };
 
 export default Booking;
 
-const StyledBooking = styled.main`
+const Container = styled.main`
   width: 80rem;
   margin: auto;
 `;
 
-const H2 = styled.h2`
+const Title = styled.h2`
   margin: 3rem 0;
   font-size: 2rem;
   color: #222222;
