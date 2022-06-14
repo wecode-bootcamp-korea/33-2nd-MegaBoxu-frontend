@@ -4,20 +4,9 @@ import DateBox from './components/DateBox';
 import YearMonth from './components/YearMonth';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
-const DateSlider = ({ handleObjectDate }) => {
+const DateSlider = ({ handleObjectDate, getDateList }) => {
   const [curDate, setCurDate] = useState(0);
   const dateBtnWrapperRef = useRef();
-
-  const getDateList = idx => {
-    const week = ['일', '월', '화', '수', '목', '금', '토'];
-    const today = new Date();
-    const newDate = new Date(today.setDate(today.getDate() + idx));
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth() + 1;
-    const date = newDate.getDate();
-    const day = week[newDate.getDay()];
-    return { year, month, date, day };
-  };
 
   const handleArrowBtn = direction => {
     if (direction === 'left' && curDate !== 0) {
@@ -25,13 +14,13 @@ const DateSlider = ({ handleObjectDate }) => {
         -DATEBOX_WIDTH * (curDate - 1)
       }px)`;
       setCurDate(prev => prev - 1);
-      handleObjectDate(curDate - 1);
+      handleObjectDate(getDateList(curDate - 1));
     } else if (direction === 'right' && curDate !== MAX_DATE - MAKE_LAST_DATE) {
       dateBtnWrapperRef.current.style.transform = `translateX(${
         -DATEBOX_WIDTH * (curDate + 1)
       }px)`;
       setCurDate(prev => prev + 1);
-      handleObjectDate(curDate + 1);
+      handleObjectDate(getDateList(curDate + 1));
     }
   };
   return (

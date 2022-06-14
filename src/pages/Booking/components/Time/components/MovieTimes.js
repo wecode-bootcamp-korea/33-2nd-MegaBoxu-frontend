@@ -81,7 +81,7 @@ const NoneBox = styled.div`
         margin-top: 1rem;
 
         .timeIcons {
-          font-size: 2rem;
+          font-size: 3rem;
           color: ${props => props.theme.colors.gray};
         }
       `;

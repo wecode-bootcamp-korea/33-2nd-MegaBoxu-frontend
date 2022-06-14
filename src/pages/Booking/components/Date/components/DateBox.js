@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const DateBox = ({ id, width, dateInfo, disabled, isSelected }) => {
   const { date, day } = dateInfo;
@@ -18,25 +18,6 @@ const DateBox = ({ id, width, dateInfo, disabled, isSelected }) => {
 };
 
 export default DateBox;
-
-// const setDisabledStyle = css`
-//   ${({ disabled }) => {
-//     if (disabled) {
-//       return css`
-//         opacity: 0.4;
-//       `;
-//     } else {
-//       return css`
-//         cursor: pointer;
-//         opacity: 1;
-
-//         &:hover {
-//           border-bottom: 2px solid ${({ theme }) => theme.colors.purple};
-//         }
-//       `;
-//     }
-//   }}
-// `;
 
 const StyledDateBtn = styled.button`
   position: relative;

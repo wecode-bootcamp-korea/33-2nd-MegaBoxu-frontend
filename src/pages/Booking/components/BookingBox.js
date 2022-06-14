@@ -7,33 +7,35 @@ import BookingTheater from './Theater/BookingTheater.js';
 import BookingTime from './Time/BookingTime.js';
 
 const BookingBox = () => {
+  const getDateList = idx => {
+    const week = ['일', '월', '화', '수', '목', '금', '토'];
+    const today = new Date();
+    const newDate = new Date(today.setDate(today.getDate() + idx));
+    const year = newDate.getFullYear();
+    const month = newDate.getMonth() + 1;
+    const date = newDate.getDate();
+    const day = week[newDate.getDay()];
+    return { year, month, date, day };
+  };
+
   const [bookingData, setBookingData] = useState([]);
   const [selectMovie, setSelectMovie] = useState([]);
   const [selectedTheater, setSelectedTheater] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
-  const [dataValues, setDataValues] = useState({});
-
+  const [selectedDate, setSelectedDate] = useState('');
   const navigator = useNavigate();
 
   useEffect(() => {
-    setDataValues({
-      ...dataValues,
-      movie: selectMovie,
-      theater: selectedTheater,
-    });
-  }, [selectMovie, selectedTheater]);
+    setSelectedDate(getDateList(0));
+  }, []);
 
   useEffect(() => {
-    const payloadString = Object.entries(dataValues)
-      .map(e => e.join('=').replace(/,/g, '&' + e[0] + '='))
-      .join('&');
-    navigator(`?${payloadString}`);
-  }, [
-    dataValues.movie,
-    dataValues.theater,
-    dataValues.date,
-    dataValues.region,
-  ]);
+    const dateString = `${selectedDate.year}-${selectedDate.month}-${selectedDate.date}`;
+    const movieString = selectMovie.map(e => `&movie=${e}`).join('&');
+    const theaterString = selectedTheater.map(e => `&theater=${e}`).join('&');
+    const regionString = selectedRegion && `&region=${selectedRegion}`;
+    navigator(`?${dateString}${movieString}${regionString}${theaterString}`);
+  }, [selectMovie, selectedTheater, selectedRegion, selectedDate]);
 
   useEffect(() => {
     fetch('data/bookingData.json', {
@@ -46,10 +48,7 @@ const BookingBox = () => {
   }, []);
 
   const handleObjectDate = date => {
-    setDataValues({
-      ...dataValues,
-      date: date,
-    });
+    setSelectedDate(date);
   };
 
   const handleSelectMovie = movies => {
@@ -62,14 +61,6 @@ const BookingBox = () => {
     } else {
       setSelectMovie(prev => [...prev, movies]);
     }
-  };
-
-  const handleSelectRegion = region => {
-    setSelectedRegion(region);
-    setDataValues({
-      ...dataValues,
-      region: region,
-    });
   };
 
   const handleSelectTheater = theaters => {
@@ -86,9 +77,19 @@ const BookingBox = () => {
     }
   };
 
+  const handleSelectRegion = region => {
+    if (selectedRegion.includes(region)) {
+      setSelectedRegion('');
+      return;
+    }
+    setSelectedRegion(region);
+  };
   return (
     <>
-      <BookingDate handleObjectDate={handleObjectDate} />
+      <BookingDate
+        handleObjectDate={handleObjectDate}
+        getDateList={getDateList}
+      />
       <BookingContainer>
         <BookingMovie
           bookingData={bookingData}
