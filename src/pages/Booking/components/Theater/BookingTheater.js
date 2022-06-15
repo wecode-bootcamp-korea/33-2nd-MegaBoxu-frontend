@@ -1,29 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RegionLists from './components/RegionLists';
 import TheaterLists from './components/TheaterLists';
 import TheaterPosts from './components/TheaterPosts';
 import styled from 'styled-components';
 
 function BookingTheater({
-  bookingData,
   selectedRegion,
   handleSelectRegion,
   handleSelectTheater,
   selectedTheater,
 }) {
-  const groupValues =
-    bookingData &&
-    bookingData.reduce((acc, current) => {
-      acc[current.region] = acc[current.region] || [];
-      acc[current.region].push(current.theater);
-      return acc;
-    }, {});
+  const [theaterData, setTheaterData] = useState([]);
 
-  const groups =
-    groupValues &&
-    Object.keys(groupValues).map(key => {
-      return { region: key, theater: groupValues[key] };
-    });
+  useEffect(() => {
+    fetch('http://10.58.1.169:8000/reservation/region-theater')
+      .then(res => res.json())
+      .then(data => {
+        setTheaterData(data.region_theaters);
+      });
+  }, []);
 
   return (
     <BookingContainer>
@@ -32,33 +27,35 @@ function BookingTheater({
         <MovieTeater>전체</MovieTeater>
         <RegionTheaterList>
           <RegionList>
-            {groups.map((group, i) => (
-              <RegionLists
-                key={i}
-                handleSelectRegion={handleSelectRegion}
-                regionSelect={selectedRegion === group.region}
-                group={group}
-              />
-            ))}
+            {theaterData?.map(region => {
+              const { region_id, region_name } = region;
+              return (
+                <RegionLists
+                  key={region_id}
+                  handleSelectRegion={handleSelectRegion}
+                  regionSelect={selectedRegion === region_name}
+                  region={region}
+                />
+              );
+            })}
           </RegionList>
           <TheaterList>
-            {groups.map(
-              (group, i) =>
-                selectedRegion === group.region && (
+            {theaterData.map(theater => {
+              const { region_id, region_name } = theater;
+              return (
+                selectedRegion === region_name && (
                   <TheaterLists
-                    key={i}
-                    group={group}
+                    key={region_id}
+                    theater={theater}
                     handleSelectTheater={handleSelectTheater}
                     selectedTheater={selectedTheater}
                   />
                 )
-            )}
+              );
+            })}
           </TheaterList>
         </RegionTheaterList>
-        <TheaterPosts
-          bookingData={bookingData}
-          selectedTheater={selectedTheater}
-        />
+        <TheaterPosts theater={theaterData} selectedTheater={selectedTheater} />
       </BookingFlexBox>
     </BookingContainer>
   );
