@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-function MoviePosts({ selectMovie, bookingData }) {
+function MoviePosts({ selectMovie, movieListData }) {
   return (
     <>
       <MoviePostNone disabled={selectMovie.length === 0}>
@@ -11,16 +11,15 @@ function MoviePosts({ selectMovie, bookingData }) {
         </span>
       </MoviePostNone>
       <MoviePostsPlus disabled={selectMovie.length > 0}>
-        {bookingData &&
-          bookingData.map(post => {
-            return (
-              selectMovie.includes(post.title) && (
-                <Posts key={post.id}>
-                  <img src={post.image} alt="MoviePost" />
-                </Posts>
-              )
-            );
-          })}
+        {movieListData?.map(post => {
+          return (
+            selectMovie.includes(post.movie_id) && (
+              <Posts key={post.movie_id}>
+                <img src={post.poster_url} alt="MoviePost" />
+              </Posts>
+            )
+          );
+        })}
       </MoviePostsPlus>
     </>
   );

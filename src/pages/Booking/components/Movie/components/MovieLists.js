@@ -2,17 +2,17 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { FaRegHeart } from 'react-icons/fa';
 
-function MovieLists({ age, title, handleSelectMovie, titleSelect }) {
+function MovieLists({ id, age, title, handleSelectMovie, titleSelect }) {
   return (
     <MovieTitles
       onClick={() => {
-        handleSelectMovie(title);
+        handleSelectMovie(id);
       }}
       titleSelect={titleSelect}
     >
       <MovieAge bgColor={AGE_COLOR[age]}>{age}</MovieAge>
       <span>{title}</span>
-      <FaRegHeart className="icons" />
+      <HeartIcon />
     </MovieTitles>
   );
 }
@@ -48,13 +48,13 @@ const MovieTitles = styled.div`
   margin: 0 0.5rem;
   padding: 0.5rem;
   ${MovieTitle}
+`;
 
-  .icons {
-    position: absolute;
-    color: #d8d9db;
-    right: 0;
-    cursor: pointer;
-  }
+const HeartIcon = styled(FaRegHeart)`
+  position: absolute;
+  color: #d8d9db;
+  right: 0;
+  cursor: pointer;
 `;
 
 const MovieAge = styled.div`

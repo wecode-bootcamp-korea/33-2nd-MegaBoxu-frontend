@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import BookingDate from './Date/BookingDate.js';
 import BookingMovie from './Movie/BookingMovie.js';
@@ -7,6 +7,13 @@ import BookingTheater from './Theater/BookingTheater.js';
 import BookingTime from './Time/BookingTime.js';
 
 const BookingBox = () => {
+  const [bookingData, setBookingData] = useState([]);
+  const [movieListData, setMovieListData] = useState([]);
+  const [selectMovie, setSelectMovie] = useState([]);
+  const [selectedTheater, setSelectedTheater] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedDate, setSelectedDate] = useState('');
+
   const getDateList = idx => {
     const week = ['일', '월', '화', '수', '목', '금', '토'];
     const today = new Date();
@@ -18,32 +25,43 @@ const BookingBox = () => {
     return { year, month, date, day };
   };
 
-  const [bookingData, setBookingData] = useState([]);
-  const [selectMovie, setSelectMovie] = useState([]);
-  const [selectedTheater, setSelectedTheater] = useState([]);
-  const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
   const navigator = useNavigate();
+  const location = useLocation();
+  const params = useParams();
 
   useEffect(() => {
     setSelectedDate(getDateList(0));
+    setSelectMovie(params.movie_id);
   }, []);
 
   useEffect(() => {
-    const dateString = `${selectedDate.year}-${selectedDate.month}-${selectedDate.date}`;
-    const movieString = selectMovie.map(e => `&movie=${e}`).join('&');
-    const theaterString = selectedTheater.map(e => `&theater=${e}`).join('&');
-    const regionString = selectedRegion && `&region=${selectedRegion}`;
-    navigator(`?${dateString}${movieString}${regionString}${theaterString}`);
-  }, [selectMovie, selectedTheater, selectedRegion, selectedDate]);
+    const dateString =
+      selectedDate &&
+      `?date=${selectedDate.year}-${selectedDate.month}-${selectedDate.date}`;
+    const movieString = selectMovie.map(e => `&movie_id=${e}`).join('');
+    const theaterString = selectedTheater.map(e => `&theater_id=${e}`).join('');
+    navigator(`${dateString}${movieString}${theaterString}`);
+  }, [selectMovie, selectedTheater, selectedDate]);
+
+  //극장아이디랑 데이트가 바뀔 때만 요청
 
   useEffect(() => {
-    fetch('data/bookingData.json', {
+    fetch(`http://10.58.6.60:8000/reservation${location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setBookingData(data.results);
+        setBookingData(data.time_table);
+      });
+  }, [location.search]);
+
+  useEffect(() => {
+    fetch('http://10.58.6.60:8000/movie', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setMovieListData(data.result);
       });
   }, []);
 
@@ -51,15 +69,15 @@ const BookingBox = () => {
     setSelectedDate(date);
   };
 
-  const handleSelectMovie = movies => {
-    if (selectMovie.includes(movies)) {
-      setSelectMovie([...selectMovie.filter(movie => movie !== movies)]);
+  const handleSelectMovie = moviesId => {
+    if (selectMovie.includes(moviesId)) {
+      setSelectMovie([...selectMovie.filter(movie => movie !== moviesId)]);
       return;
     }
     if (selectMovie.length >= 3) {
       alert('영화는 최대 3개까지 선택이 가능합니다.');
     } else {
-      setSelectMovie(prev => [...prev, movies]);
+      setSelectMovie(prev => [...prev, moviesId]);
     }
   };
 
@@ -92,12 +110,11 @@ const BookingBox = () => {
       />
       <BookingContainer>
         <BookingMovie
-          bookingData={bookingData}
+          movieListData={movieListData}
           handleSelectMovie={handleSelectMovie}
           selectMovie={selectMovie}
         />
         <BookingTheater
-          bookingData={bookingData}
           handleSelectTheater={handleSelectTheater}
           handleSelectRegion={handleSelectRegion}
           selectedTheater={selectedTheater}

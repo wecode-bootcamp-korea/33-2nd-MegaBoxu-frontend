@@ -3,26 +3,26 @@ import MovieLists from './components/MovieLists.js';
 import MoviePosts from './components/MoviePosts.js';
 import styled from 'styled-components';
 
-function BookingMovie({ bookingData, handleSelectMovie, selectMovie }) {
+function BookingMovie({ movieListData, handleSelectMovie, selectMovie }) {
   return (
     <BookingContainer>
       <BookingFlexBox>
         <H2>영화</H2>
         <MovieAll>전체</MovieAll>
         <MovieList>
-          {bookingData?.map(movies => (
+          {movieListData?.map(movies => (
             <MovieLists
               title={movies.title}
-              age={movies.age}
-              id={movies.id}
-              key={movies.id}
+              age={movies.age_limit}
+              id={movies.movie_id}
+              key={movies.movie_id}
               handleSelectMovie={handleSelectMovie}
               selectMovie={selectMovie}
-              titleSelect={selectMovie.includes(movies.title)}
+              titleSelect={selectMovie.includes(movies.movie_id)}
             />
           ))}
         </MovieList>
-        <MoviePosts bookingData={bookingData} selectMovie={selectMovie} />
+        <MoviePosts movieListData={movieListData} selectMovie={selectMovie} />
       </BookingFlexBox>
     </BookingContainer>
   );

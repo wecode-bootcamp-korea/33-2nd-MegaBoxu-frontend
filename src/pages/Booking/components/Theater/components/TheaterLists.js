@@ -1,21 +1,25 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const TheaterLists = ({ group, handleSelectTheater, selectedTheater }) => {
-  const { theater } = group;
+const TheaterLists = ({ theater, handleSelectTheater, selectedTheater }) => {
+  const { theaters } = theater;
+
   return (
     <>
-      {theater.map((theater, i) => (
-        <TheaterContents
-          theaterSel={selectedTheater.includes(theater)}
-          onClick={() => {
-            handleSelectTheater(theater);
-          }}
-          key={i}
-        >
-          {theater}
-        </TheaterContents>
-      ))}
+      {theaters.map(theater => {
+        const { id, name } = theater;
+        return (
+          <TheaterContents
+            theaterSel={selectedTheater.includes(id)}
+            onClick={() => {
+              handleSelectTheater(id);
+            }}
+            key={id}
+          >
+            {name}
+          </TheaterContents>
+        );
+      })}
     </>
   );
 };

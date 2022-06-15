@@ -5,26 +5,50 @@ import { MdMoreTime } from 'react-icons/md';
 const MovieTimes = ({ bookingData, selectedTheater }) => {
   return (
     <>
+<<<<<<< HEAD
       <NoneBox disabled={selectedTheater.length > 0 ? false : true}>
         <MdMoreTime className="timeIcons" />
+=======
+      <NoneBox disabled={selectedTheater.length === 0}>
+        <TimeIcon />
+>>>>>>> feature/booking
         <TimeNotice>
           영화와 극장을 선택하시면
           <br />
           상영시간표를 비교하여 볼 수 있습니다.
         </TimeNotice>
       </NoneBox>
+<<<<<<< HEAD
       <MovieTimeBox disabled={selectedTheater.length > 0 ? true : false}>
         {bookingData.map(timeList => {
           const { id, title, theater, start_time, end_time } = timeList;
           return (
             <MovieTime key={id}>
+=======
+      <MovieTimeBox disabled={selectedTheater.length !== 0}>
+        {bookingData?.map(timeList => {
+          const {
+            movie_theater_id,
+            movie_title,
+            theater_name,
+            start_time,
+            end_time,
+          } = timeList;
+          return (
+            <MovieTime key={movie_theater_id}>
+>>>>>>> feature/booking
               <TimeBox>
                 <p>{start_time}</p>
                 <span>~{end_time}</span>
               </TimeBox>
               <TitleBox>
+<<<<<<< HEAD
                 <p>{title}</p>
                 <span>{theater}</span>
+=======
+                <p>{movie_title}</p>
+                <span>{theater_name}</span>
+>>>>>>> feature/booking
               </TitleBox>
             </MovieTime>
           );
@@ -79,11 +103,14 @@ const NoneBox = styled.div`
         padding-top: 13rem;
         border-top: ${props => props.theme.borders.gray};
         margin-top: 1rem;
+<<<<<<< HEAD
 
         .timeIcons {
           font-size: 3rem;
           color: ${props => props.theme.colors.gray};
         }
+=======
+>>>>>>> feature/booking
       `;
     } else {
       return css`
@@ -93,6 +120,14 @@ const NoneBox = styled.div`
   }};
 `;
 
+<<<<<<< HEAD
+=======
+const TimeIcon = styled(MdMoreTime)`
+  font-size: 3rem;
+  color: ${props => props.theme.colors.gray};
+`;
+
+>>>>>>> feature/booking
 const TimeNotice = styled.div`
   font-size: 1.5rem;
   color: ${props => props.theme.colors.gray};
