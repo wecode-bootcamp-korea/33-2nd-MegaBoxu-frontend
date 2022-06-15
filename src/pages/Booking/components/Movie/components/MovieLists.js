@@ -2,17 +2,27 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { FaRegHeart } from 'react-icons/fa';
 
-function MovieLists({ age, title, handleSelectMovie, titleSelect }) {
+function MovieLists({
+  id,
+  age,
+  title,
+  handleSelectMovie,
+  titleSelect,
+  isAvailable,
+}) {
   return (
     <MovieTitles
       onClick={() => {
-        handleSelectMovie(title);
+        isAvailable
+          ? handleSelectMovie(id)
+          : alert('해당 일자의 상영 시간표가 없습니다.');
       }}
       titleSelect={titleSelect}
+      isAvailable={isAvailable}
     >
       <MovieAge bgColor={AGE_COLOR[age]}>{age}</MovieAge>
       <span>{title}</span>
-      <FaRegHeart className="icons" />
+      <HeartIcon />
     </MovieTitles>
   );
 }
@@ -20,11 +30,16 @@ function MovieLists({ age, title, handleSelectMovie, titleSelect }) {
 export default MovieLists;
 
 const MovieTitle = css`
-  ${({ titleSelect }) => {
-    if (titleSelect) {
+  ${({ titleSelect, isAvailable }) => {
+    if (titleSelect && isAvailable) {
       return css`
         background-color: ${({ theme }) => theme.colors.gray};
         color: white;
+      `;
+    } else if (!isAvailable) {
+      return css`
+        color: ${({ theme }) => theme.colors.gray};
+        cursor: default;
       `;
     } else {
       return css`
@@ -47,14 +62,16 @@ const MovieTitles = styled.div`
   cursor: pointer;
   margin: 0 0.5rem;
   padding: 0.5rem;
+  background-color: ${({ isAvailable }) =>
+    isAvailable ? 'gray' : 'transparent'};
   ${MovieTitle}
+`;
 
-  .icons {
-    position: absolute;
-    color: #d8d9db;
-    right: 0;
-    cursor: pointer;
-  }
+const HeartIcon = styled(FaRegHeart)`
+  position: absolute;
+  color: #d8d9db;
+  right: 0;
+  cursor: pointer;
 `;
 
 const MovieAge = styled.div`

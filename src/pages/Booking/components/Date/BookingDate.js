@@ -26,8 +26,7 @@ const DateSlider = ({ handleObjectDate, getDateList }) => {
   return (
     <StyledDateSlider>
       <ArrowBtn>
-        <MdChevronLeft
-          className="arrowIcons"
+        <ArrowIconLeft
           onClick={() => {
             handleArrowBtn('left');
           }}
@@ -58,8 +57,7 @@ const DateSlider = ({ handleObjectDate, getDateList }) => {
         </DateSliderContainer>
       </DateSliderWrapper>
       <ArrowBtn>
-        <MdChevronRight
-          className="arrowIcons"
+        <ArrowIconRight
           onClick={() => {
             handleArrowBtn('right');
           }}
@@ -80,10 +78,14 @@ const ArrowBtn = styled.button`
   height: 2.5rem;
   background-color: transparent;
   border: none;
+`;
 
-  .arrowIcons {
-    font-size: 1.5rem;
-  }
+const ArrowIconLeft = styled(MdChevronLeft)`
+  font-size: 1.5rem;
+`;
+
+const ArrowIconRight = styled(MdChevronRight)`
+  font-size: 1.5rem;
 `;
 
 const DateSliderWrapper = styled.div`

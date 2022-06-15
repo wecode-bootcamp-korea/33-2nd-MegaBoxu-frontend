@@ -1,22 +1,23 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-function TheaterPosts({ selectedTheater, bookingData }) {
+function TheaterPosts({ selectedTheater, theater }) {
   return (
     <>
-      <TheaterPostNone disabled={selectedTheater.length > 0 ? false : true}>
+      <TheaterPostNone disabled={selectedTheater.length === 0}>
         <span>
           전체극장
           <br /> 목록에서 극장을 선택하세요.
         </span>
       </TheaterPostNone>
-      <TheaterPostsPlus disabled={selectedTheater.length > 0 ? true : false}>
-        {bookingData &&
-          bookingData.map(post => {
-            return (
-              selectedTheater.includes(post.theater) && (
-                <Posts key={post.id}>{post.theater}</Posts>
-              )
+      <TheaterPostsPlus disabled={selectedTheater.length !== 0}>
+        {theater &&
+          theater.map(post => {
+            return post.theaters.map(
+              posts =>
+                selectedTheater.includes(posts.id) && (
+                  <Posts key={posts.id}>{posts.name}</Posts>
+                )
             );
           })}
       </TheaterPostsPlus>

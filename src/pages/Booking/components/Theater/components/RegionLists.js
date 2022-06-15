@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const RegionLists = ({ handleSelectRegion, group, regionSelect }) => {
+const RegionLists = ({ handleSelectRegion, region, regionSelect }) => {
+  const { region_name, theaters } = region;
   return (
     <RegionContents
       regionSelect={regionSelect}
       onClick={() => {
-        handleSelectRegion(group.region);
+        handleSelectRegion(region_name);
       }}
     >
-      {group.region}({group.theater.length})
+      {region_name}({theaters.length})
     </RegionContents>
   );
 };

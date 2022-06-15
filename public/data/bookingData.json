@@ -1,136 +1,40 @@
 {
-  "results": [
+  "result": [
     {
-      "id": 0,
+      "movie_id": 1,
       "title": "브로커",
-      "date": "10",
-      "age": 12,
-      "image": "/images/브로커.jpg",
-      "region": "서울",
-      "theater": "강남",
-      "start_time": "14:00",
-      "end_time": "15:37"
+      "poster_url": "https://img.megabox.co.kr/SharedImg/2022/05/12/y1RvPjCDEgjkIG2fbquiF4Tnm7zNIoJT_420.jpg",
+      "reservation_rate": "37.20",
+      "age_limit": "12",
+      "release_date": "2022.06.08",
+      "is_available": "true"
     },
     {
-      "id": 1,
+      "movie_id": 2,
       "title": "범죄도시2",
-      "date": "10",
-      "age": 15,
-      "image": "/images/범죄도시2.jpg",
-      "region": "서울",
-      "theater": "강남대로",
-      "start_time": "08:30",
-      "end_time": "10:40"
+      "poster_url": "https://img.megabox.co.kr/SharedImg/2022/05/23/oZfETtpEvKGpdY2JQo2Z6wFL0S4cpKy5_420.jpg",
+      "reservation_rate": "19.30",
+      "age_limit": "15",
+      "release_date": "2022.05.18",
+      "is_available": "false"
     },
     {
-      "id": 2,
-      "title": "극장판 포켓몬스터DP: 기라티나와 하늘의 꽃다발 쉐이미",
-      "date": "10",
-      "age": 15,
-      "image": "/images/포켓몬스터.jpg",
-      "region": "서울",
-      "theater": "강동",
-      "start_time": "12:15",
-      "end_time": "14:00"
+      "movie_id": 3,
+      "title": "기라티나와 하늘의 꽃다발",
+      "poster_url": "https://img.megabox.co.kr/SharedImg/2022/05/04/KxT7Za2g1AmoneCh75n04SkrXr0TmxWX_420.jpg",
+      "reservation_rate": "14.40",
+      "age_limit": "All",
+      "release_date": "2022.06.01",
+      "is_available": "false"
     },
     {
-      "id": 3,
-      "title": "쥬라기 월드:도미니언",
-      "date": "10",
-      "age": 12,
-      "image": "/images/쥬라기월드.jpg",
-      "region": "서울",
-      "theater": "군자",
-      "start_time": "20:30",
-      "end_time": "22:10"
-    },
-    {
-      "id": 4,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": 15,
-      "image": "/images/마녀.jpg",
-      "region": "서울",
-      "theater": "강서",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 5,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": "18",
-      "image": "/images/마녀.jpg",
-      "region": "서울",
-      "theater": "구의",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 6,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": "All",
-      "image": "/images/마녀.jpg",
-      "region": "서울",
-      "theater": "건대",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 7,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": 15,
-      "image": "/images/마녀.jpg",
-      "region": "부산",
-      "theater": "해운대",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 8,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": 15,
-      "image": "/images/마녀.jpg",
-      "region": "부산",
-      "theater": "광안리",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 9,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": 15,
-      "image": "/images/마녀.jpg",
-      "region": "부산",
-      "theater": "부산",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 10,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": 15,
-      "image": "/images/마녀.jpg",
-      "region": "부산",
-      "theater": "busan",
-      "start_time": "14:30",
-      "end_time": "16:05"
-    },
-    {
-      "id": 11,
-      "title": "마녀(魔女) Part2. The Other One",
-      "date": "10",
-      "age": 15,
-      "image": "/images/마녀.jpg",
-      "region": "부산",
-      "theater": "Busan",
-      "start_time": "14:30",
-      "end_time": "16:05"
+      "movie_id": 4,
+      "title": "쥬라기월드 도미니언",
+      "poster_url": "https://img.megabox.co.kr/SharedImg/2022/05/16/WApIttC9CrStYU7j7jzFRlc2HsIXBQtY_420.jpg",
+      "reservation_rate": "10.40",
+      "age_limit": "12",
+      "release_date": "2022.06.01",
+      "is_available": "false"
     }
   ]
 }
