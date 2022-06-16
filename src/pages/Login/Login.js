@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import LoginModal from './components/LoginModal';
 
 import styled from 'styled-components';
 
-// To Do: 추후 Nav와 merge되면 return 안의 button 삭제 및 Nav로 코드 modal 관련 코드 이동 예정입니다.
-
-const Login = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const modalOpen = () => {
-    setIsModalOpen(true);
-  };
-
+const Login = ({ setIsModalOpen }) => {
   const modalClose = e => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
@@ -21,8 +13,7 @@ const Login = () => {
 
   return (
     <LoginWrapper onClick={modalClose}>
-      <button onClick={modalOpen}>로그인하기</button>
-      {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
+      <LoginModal setIsModalOpen={setIsModalOpen} />
     </LoginWrapper>
   );
 };

@@ -9,12 +9,14 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiSearch } from 'react-icons/bi';
 import { BsCalendar3, BsPerson } from 'react-icons/bs';
 import styled from 'styled-components';
+import Login from '../../pages/Login/Login.js';
 
 const Nav = () => {
   const [navId, setNavId] = useState('');
   const [siteMapActive, setSiteMapActive] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const [loginActive, setLoginActive] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navi = '/';
   const location = useLocation();
@@ -36,6 +38,18 @@ const Nav = () => {
 
   const activeLoginBox = () => {
     setLoginActive(prev => !prev);
+  };
+
+  const modalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const signOut = () => {
+    const isSignIn = localStorage.getItem('token');
+    if (isSignIn) {
+      localStorage.removeItem();
+      navigate('/');
+    }
   };
 
   return (
@@ -92,9 +106,12 @@ const Nav = () => {
           />
           <NavRight>
             <NavRightTop>
-              <NavRightText onClick={() => navigate('/login')}>
-                로그인
+              <NavRightText
+                onClick={localStorage.getItem('token') ? signOut : modalOpen}
+              >
+                {localStorage.getItem('token') ? '로그아웃' : '로그인'}
               </NavRightText>
+              {isModalOpen && <Login setIsModalOpen={setIsModalOpen} />}
               <NavRightText onClick={() => navigate('/signup')}>
                 회원가입
               </NavRightText>
