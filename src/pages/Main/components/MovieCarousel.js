@@ -42,7 +42,7 @@ const MovieCarousel = ({ source, rank }) => {
           {isLiked ? <FaHeart color="#027b94" /> : <FaRegHeart color="#fff" />}
           &nbsp; {likeNumber}
         </Like>
-        <Booking onClick={() => navigate(`/booking?movie_id=${movie_id}`)}>
+        <Booking onClick={() => navigate('/booking', { state: movie_id })}>
           예매
         </Booking>
       </ButtonWrapper>
