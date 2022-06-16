@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import BookingDate from './Date/BookingDate.js';
 import BookingMovie from './Movie/BookingMovie.js';
@@ -7,9 +7,12 @@ import BookingTheater from './Theater/BookingTheater.js';
 import BookingTime from './Time/BookingTime.js';
 
 const BookingBox = () => {
+  const location = useLocation();
   const [bookingData, setBookingData] = useState([]);
   const [movieListData, setMovieListData] = useState([]);
-  const [selectMovie, setSelectMovie] = useState([]);
+  const [selectMovie, setSelectMovie] = useState(
+    location.state ? [location.state] : []
+  );
   const [selectedTheater, setSelectedTheater] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
@@ -25,14 +28,8 @@ const BookingBox = () => {
     return { year, month, date, day };
   };
 
-  const navigator = useNavigate();
-  const location = useLocation();
-  // const params = useParams();
-  // console.log(params);
-
   useEffect(() => {
     setSelectedDate(getDateList(0));
-    // setSelectMovie(params.movie_id);
   }, []);
 
   useEffect(() => {
@@ -41,14 +38,9 @@ const BookingBox = () => {
       `?date=${selectedDate.year}-${selectedDate.month}-${selectedDate.date}`;
     const movieString = selectMovie.map(e => `&movie_id=${e}`).join('');
     const theaterString = selectedTheater.map(e => `&theater_id=${e}`).join('');
-    navigator(`${dateString}${movieString}${theaterString}`);
-  }, [selectMovie, selectedTheater, selectedDate]);
-
-  useEffect(() => {
     selectedTheater.length !== 0 &&
       fetch(
-        // 'data/theaterData.json',
-        `http://10.58.1.169:8000/reservation${location.search}`,
+        `http://10.58.1.169:8000/reservation${dateString}${movieString}${theaterString}`,
         {
           method: 'GET',
         }
@@ -57,16 +49,12 @@ const BookingBox = () => {
         .then(data => {
           setBookingData(data.time_table);
         });
-  }, [location.search]);
+  }, [selectMovie, selectedTheater, selectedDate]);
 
   useEffect(() => {
-    fetch(
-      // 'data/bookingData.json',
-      'http://10.58.1.169:8000/movie',
-      {
-        method: 'GET',
-      }
-    )
+    fetch('http://10.58.1.169:8000/movie', {
+      method: 'GET',
+    })
       .then(res => res.json())
       .then(data => {
         setMovieListData(data.result);
