@@ -47,8 +47,9 @@ const Nav = () => {
   const signOut = () => {
     const isSignIn = localStorage.getItem('token');
     if (isSignIn) {
-      localStorage.removeItem();
+      localStorage.removeItem('token');
       navigate('/');
+      alert('로그아웃 되었습니다.');
     }
   };
 
