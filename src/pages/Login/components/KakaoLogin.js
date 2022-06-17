@@ -28,7 +28,7 @@ const KakaoLogin = () => {
 
   useEffect(() => {
     getToken();
-  });
+  }, []);
 
   return <div>KakaoLogin</div>;
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BoxOfficeCarousel from './components/BoxOfficeCarousel';
@@ -16,6 +16,10 @@ const Main = () => {
   const goToMovieList = () => {
     navigate('/movielist');
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <MainPage>

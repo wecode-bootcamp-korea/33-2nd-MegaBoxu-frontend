@@ -31,8 +31,6 @@ const CommentList = ({ movieInfo, params }) => {
     rating: 0,
   };
 
-  console.log(image.preview_URL);
-
   const [commentValue, setCommentValue] = useState(DEFAULLT_COMMENT_VALUE);
   const [commentList, setCommentList] = useState([]);
 
@@ -103,6 +101,7 @@ const CommentList = ({ movieInfo, params }) => {
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: localStorage.getItem('token'),
       },
     };
 
@@ -121,7 +120,7 @@ const CommentList = ({ movieInfo, params }) => {
   };
 
   const deleteComment = id => {
-    fetch(`${BASE_URL}/review/${params.id}/`, {
+    fetch(`${BASE_URL}/review/${params.id}/${id}`, {
       method: 'DELETE',
     }).then(res => {
       if (res.status === 204) {
@@ -153,12 +152,11 @@ const CommentList = ({ movieInfo, params }) => {
               재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
             </ExamText>
             <CommentBtn
-              onClick={openModal}
-              // onClick={
-              //   localStorage.getItem('token')
-              //     ? openModal
-              //     : () => alert('로그인 후 관람평을 남기실 수 있습니다.')
-              // }
+              onClick={
+                localStorage.getItem('token')
+                  ? openModal
+                  : () => alert('로그인 후 관람평을 남기실 수 있습니다.')
+              }
             >
               <TbPencil className="commentIcon" />
               관람평 쓰기
