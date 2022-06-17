@@ -20,8 +20,6 @@ const MovieList = () => {
   const [query, setQuery] = useState(12);
   const navigate = useNavigate();
 
-  console.log(stateValue);
-
   //데이터 받아오기
   useEffect(() => {
     fetch(`${API.MOVIE}${location.search}`, {

@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://10.58.1.162:8000/';
+export const BASE_URL = 'http://172.31.36.233:8000/';
 
 export const API = {
   KAKAO_LOGIN: `${BASE_URL}user/kakao/callback`,
